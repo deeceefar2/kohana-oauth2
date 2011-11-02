@@ -210,6 +210,7 @@ class Kohana_OAuth2_Provider {
 		$response = array(
 			'token_type'    => OAuth2::TOKEN_TYPE_BEARER, // TODO: Support other token types here..
 			'expires_in'    => Model_OAuth2_Access_Token::$lifetime,
+			'user_id'    => $user_id,
 		);
 
 		// Generate an access token
@@ -222,7 +223,6 @@ class Kohana_OAuth2_Provider {
 		{
 			// Generate a refresh token
 			$refresh_token = Model_OAuth2_Refresh_Token::create_token($client->client_id, $user_id, $scopes);
-
 			$response['refresh_token'] = $refresh_token->refresh_token;
 		}
 
