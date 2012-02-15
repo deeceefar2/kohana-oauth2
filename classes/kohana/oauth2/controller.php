@@ -24,7 +24,7 @@ abstract class Kohana_OAuth2_Controller extends Controller {
 	/**
 	 * @var string User ID
 	 */
-	protected $_oauth_user_id = NULL;
+	protected $_oauth_user_id = '000000000-0000-0000-0000-000000000000';
 
 	/**
 	 * @var boolean Verify OAuth token automatically?
@@ -37,7 +37,7 @@ abstract class Kohana_OAuth2_Controller extends Controller {
 
 		$this->_oauth = OAuth2_Provider::factory($this->request);
 
-		if ($this->_oauth_verify)
+		if ($this->_oauth_verify || $this->request->post('access_token') !== NULL || $this->request->query('access_token') !== NULL)
 		{
 			$this->_oauth_verify_token();
 		}
